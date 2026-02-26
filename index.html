@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSV Chart Generator</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <header>
+    <h1>CSV Chart Generator</h1>
+    <p>Upload a CSV file, pick your columns, and generate charts instantly.</p>
+  </header>
+
+  <main>
+
+    <!-- STEP 1: Upload -->
+    <section class="card" id="upload-section">
+      <div class="step-label">Step 1 — Upload CSV</div>
+      <div class="drop-zone" id="drop-zone">
+        <div class="drop-icon">&#128196;</div>
+        <p>Drag & drop your CSV file here</p>
+        <span>or</span>
+        <label class="btn" for="file-input">Browse File</label>
+        <input type="file" id="file-input" accept=".csv" hidden />
+      </div>
+      <div class="file-info" id="file-info"></div>
+    </section>
+
+    <!-- STEP 2: Preview -->
+    <section class="card hidden" id="preview-section">
+      <div class="step-label">Step 2 — Data Preview</div>
+      <div class="table-wrapper">
+        <table id="preview-table"></table>
+      </div>
+      <p class="row-count" id="row-count"></p>
+    </section>
+
+    <!-- STEP 3: Configure -->
+    <section class="card hidden" id="config-section">
+      <div class="step-label">Step 3 — Configure Chart</div>
+      <div class="config-grid">
+
+        <div class="config-group">
+          <label for="chart-type">Chart Type</label>
+          <select id="chart-type">
+            <option value="bar">Bar Chart</option>
+            <option value="line">Line Chart</option>
+            <option value="pie">Pie Chart</option>
+            <option value="doughnut">Doughnut Chart</option>
+            <option value="scatter">Scatter Plot</option>
+          </select>
+          <div class="suggest-badge hidden" id="suggest-badge"></div>
+        </div>
+
+        <div class="config-group">
+          <label for="x-axis">X Axis / Labels</label>
+          <select id="x-axis"></select>
+        </div>
+
+        <div class="config-group" id="y-axis-group">
+          <label for="y-axis">Y Axis / Values</label>
+          <select id="y-axis"></select>
+        </div>
+
+        <div class="config-group">
+          <label for="chart-color">Chart Color</label>
+          <input type="color" id="chart-color" value="#e94560" />
+        </div>
+
+      </div>
+      <button class="btn btn-generate" id="generate-btn">Generate Chart</button>
+    </section>
+
+    <!-- STEP 4: Chart -->
+    <section class="card hidden" id="chart-section">
+      <div class="step-label">Step 4 — Your Chart</div>
+      <div class="chart-container">
+        <canvas id="my-chart"></canvas>
+      </div>
+      <div class="chart-actions">
+        <button class="btn" id="download-btn">Download PNG</button>
+        <button class="btn btn-secondary" id="new-chart-btn">New Chart</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
